@@ -17,15 +17,6 @@
       }
 	  },
     {
-      "type": "application/rendersettings",
-      "content": {
-        "fog": {
-          "fogType": "exp",
-          "args": [[59, 73, 122], 0.02]
-        }
-      }
-    },
-    {
       "position": [
         0,
         0,
