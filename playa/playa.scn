@@ -43,7 +43,7 @@
         4
       ],
       "physics": true,
-      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/assets/rv.glb",
+      "start_url": "https://pigloo.github.io/weba-scenes/playa/assets/rv.glb",
       "dynamic": false
     },
     {
@@ -64,7 +64,7 @@
         30
       ],
       "physics": true,
-      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/assets/balloon.glb",
+      "start_url": "https://pigloo.github.io/weba-scenes/playa/assets/balloon.glb",
       "dynamic": false
     },
     {
@@ -73,7 +73,7 @@
         0,
         -5
       ],
-      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/dust-devil/index.js"
+      "start_url": "https://pigloo.github.io/weba-scenes/playa/dust-devil/index.js"
     },
     {
       "position": [
@@ -81,7 +81,7 @@
         0,
         0
       ],
-      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/desert/index.js"
+      "start_url": "https://pigloo.github.io/weba-scenes/playa/desert/index.js"
     }
   ]
 }
