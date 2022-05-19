@@ -8,7 +8,7 @@ const groundCol = 0xe1bf92; // 0xe8e1d1
 export default () => {
   const app = useApp();
   const renderer = useRenderer();
-  renderer.setClearColor(skyCol);
+  //renderer.setClearColor(skyCol);
 
   const floor = (() => {
     const geometry = new THREE.PlaneBufferGeometry(2000, 2000, 1, 1);
