@@ -1,0 +1,87 @@
+{
+  "objects": [
+    {
+      "type": "application/light",
+      "content": {
+        "lightType": "ambient",
+        "args": [[255, 255, 255], 1]
+      }
+    },
+    {
+      "type": "application/light",
+      "content": {
+        "lightType": "directional",
+        "args": [[255, 255, 255], 1],
+        "position": [-16, 16, -6],
+        "shadow": [30, 4096, 0.1, 100, 0, 0.1]
+      }
+	  },
+    {
+      "type": "application/rendersettings",
+      "content": {
+        "fog": {
+          "fogType": "exp",
+          "args": [[59, 73, 122], 0.02]
+        }
+      }
+    },
+    {
+      "position": [
+        7,
+        1.3,
+        -10
+      ],
+      "quaternion": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865475
+      ],
+      "scale": [
+        4,
+        4,
+        4
+      ],
+      "physics": true,
+      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/assets/rv.glb",
+      "dynamic": false
+    },
+    {
+      "position": [
+        -3,
+        10,
+        -5
+      ],
+      "quaternion": [
+        0,
+        -0.7071067811865475,
+        0,
+        0.7071067811865475
+      ],
+      "scale": [
+        30,
+        30,
+        30
+      ],
+      "physics": true,
+      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/assets/balloon.glb",
+      "dynamic": false
+    },
+    {
+      "position": [
+        0,
+        0,
+        -5
+      ],
+      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/dust-devil/index.js"
+    },
+    {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "start_url": "https://pigloo.github.io/weba-scenes/gpgpu-dust-devil/desert/index.js"
+    }
+  ]
+}

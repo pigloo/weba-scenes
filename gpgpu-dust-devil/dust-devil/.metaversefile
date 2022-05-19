@@ -1,0 +1,5 @@
+{
+  "name": "dust-devil",
+  "description": "playa dust devil",
+  "start_url": "index.js"
+}

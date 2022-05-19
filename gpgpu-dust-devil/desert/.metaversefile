@@ -1,0 +1,5 @@
+{
+  "name": "desert",
+  "description": "simple desert scene",
+  "start_url": "index.js"
+}
