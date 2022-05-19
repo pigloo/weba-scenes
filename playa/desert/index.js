@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import metaversefile from 'metaversefile';
 const {useApp, useRenderer, usePhysics, useCleanup} = metaversefile;
 
-const skyCol = 0x5c72bf;
+const skyCol = 0x6983db;
 const groundCol = 0xe1bf92; // 0xe8e1d1
 
 export default () => {
