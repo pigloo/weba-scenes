@@ -2,13 +2,13 @@ import * as THREE from 'three';
 import metaversefile from 'metaversefile';
 const {useApp, useRenderer, usePhysics, useCleanup} = metaversefile;
 
-const skyCol = 0x3b497a;
+//const skyCol = 0x5c72bf;
 const groundCol = 0xe1bf92; // 0xe8e1d1
 
 export default () => {
   const app = useApp();
   const renderer = useRenderer();
-  renderer.setClearColor(skyCol);
+  //renderer.setClearColor(skyCol);
 
   const floor = (() => {
     const geometry = new THREE.PlaneBufferGeometry(2000, 2000, 1, 1);
