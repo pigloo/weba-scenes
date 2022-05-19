@@ -43,7 +43,7 @@ export default () => {
     const wind = new Vector2(app.position.x, app.position.z);
 
     if(player.distanceTo(wind) < 2 && localPlayer.position.y < 10){
-      localPlayer.characterPhysics.velocity.y += 0.5;
+      localPlayer.characterPhysics.velocity.y += 0.3;
     }
 
   });
