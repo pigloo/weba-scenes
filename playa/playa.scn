@@ -17,21 +17,12 @@
       }
 	  },
     {
-      "type": "application/rendersettings",
-      "content": {
-        "fog": {
-          "fogType": "exp",
-          "args": [[59, 73, 122], 0.02]
-        }
-      }
-    },
-    {
       "position": [
         0,
         0,
         0
       ],
-      "start_url": "https://webaverse.github.io/skybox-anime/"
+      "start_url": "https://webaverse.github.io/atmospheric-sky/"
     },
     {
       "position": [
