@@ -7,11 +7,11 @@ const groundCol = 0xe1bf92; // 0xe8e1d1
 
 export default () => {
   const app = useApp();
-  const renderer = useRenderer();
+  //const renderer = useRenderer();
 
   const sky = (() => {
     const geometry = new THREE.SphereGeometry( 1000, 12, 12 );
-    const material = new THREE.MeshBasicMaterial( { color: skyCol, side: THREE.BackSide } );
+    const material = new THREE.MeshBasicMaterial( { color: skyCol, side: THREE.BackSide, fog: false } );
     const mesh = new THREE.Mesh( geometry, material );
     return mesh 
   })
