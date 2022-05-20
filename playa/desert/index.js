@@ -1,13 +1,14 @@
 import * as THREE from 'three';
 import metaversefile from 'metaversefile';
-const {useApp, useRenderer, usePhysics, useCleanup} = metaversefile;
+const {useApp, usePhysics, useCleanup} = metaversefile;
 
 const skyCol = 0x3b497a;
 const groundCol = 0xe1bf92; // 0xe8e1d1
 
 export default () => {
   const app = useApp();
-  //const renderer = useRenderer();
+
+  console.log('testing testing 123')
 
   const sky = (() => {
     const geometry = new THREE.SphereGeometry( 1000, 12, 12 );
