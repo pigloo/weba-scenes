@@ -14,7 +14,7 @@ export default () => {
     const material = new THREE.MeshBasicMaterial( { color: skyCol, side: THREE.BackSide, fog: false } );
     const mesh = new THREE.Mesh( geometry, material );
     return mesh 
-  })
+  })();
   app.add(sky);
 
   const floor = (() => {
