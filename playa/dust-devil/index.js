@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import metaversefile from 'metaversefile';
 import {GPUComputationRenderer} from 'three/examples/jsm/misc/GPUComputationRenderer';
 import { Vector2 } from 'three';
-import devil from './initPos.js'
+import * as devil from './initPos.js'
 const {useFrame, useApp, useRenderer, useLocalPlayer} = metaversefile;
 
 const TEXSQRT = 256;
