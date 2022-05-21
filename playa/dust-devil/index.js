@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import metaversefile from 'metaversefile';
 import {GPUComputationRenderer} from 'three/examples/jsm/misc/GPUComputationRenderer';
 import { Vector2 } from 'three';
-import * as devil from './initPos.js'
+import Devil from './initPos.js'
 const {useFrame, useApp, useRenderer, useLocalPlayer} = metaversefile;
 
 const TEXSQRT = 256;
@@ -12,6 +12,7 @@ const SCALE = 0.25;
 var gpuCompute, positionVariable, defaultPositionTexture, undef;
 const lightPos = new THREE.Vector3(-16, 16, -6);
 const groundCol = 0xe1bf92; // 0xe8e1d1
+const devil = Devil();
 
 export default () => {
   const app = useApp();
