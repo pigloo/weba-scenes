@@ -73,6 +73,7 @@ const initParticleMesh = () => {
   var material = new THREE.ShaderMaterial({
     uniforms: THREE.UniformsUtils.merge([
       THREE.UniformsLib.lights,
+      THREE.UniformsLib.fog,
       {
         u_positionTexture: {type: 't', value: undef},
         u_scale: {type: 'f', value: SCALE},
@@ -85,6 +86,7 @@ const initParticleMesh = () => {
     vertexShader: particlesVert,
     fragmentShader: particlesFrag,
     lights: true,
+    fog: true,
     side: THREE.DoubleSide,
     blending: THREE.NoBlending,
   });
@@ -190,7 +192,9 @@ void main() {
     vec4 worldPosition = modelMatrix * vec4(pos.xyz, 1.0);
     vec4 mvPosition = viewMatrix * worldPosition;
 
-  	float scale = u_scale / - mvPosition.z * smoothstep(0.0, 0.2, pos.w);
+    float distMax = min(- mvPosition.z, 7.5);
+    float scaleNear = min(u_scale / distMax, 0.05);
+  	float scale = scaleNear * smoothstep(0.0, 0.2, pos.w);
 
   	mvPosition.xyz += position * scale;
 
