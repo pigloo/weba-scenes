@@ -8,13 +8,11 @@ const groundCol = 0xe1bf92; // 0xe8e1d1
 export default () => {
   const app = useApp();
 
-  console.log('testing testing 123')
-
   const sky = (() => {
     const geometry = new THREE.SphereGeometry( 1000, 12, 12 );
     const material = new THREE.MeshBasicMaterial( { color: skyCol, side: THREE.BackSide, fog: false } );
     const mesh = new THREE.Mesh( geometry, material );
-    return mesh 
+    return mesh;
   })();
   app.add(sky);
 
