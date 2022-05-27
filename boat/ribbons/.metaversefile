@@ -1,0 +1,5 @@
+{
+  "name": "abstract_ribbons",
+  "description": "GPGPU abstract ribbons",
+  "start_url": "index.js"
+}

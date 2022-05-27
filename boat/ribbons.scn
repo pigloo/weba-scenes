@@ -1,0 +1,63 @@
+{
+  "objects": [
+    {
+      "type": "application/light",
+      "content": {
+        "lightType": "ambient",
+        "args": [[255, 255, 255], 0.2]
+      }
+    },
+    {
+      "type": "application/light",
+      "content": {
+        "lightType": "directional",
+        "args": [[255, 255, 255], 0.2],
+        "position": [-16, 16, -6]
+      }
+	  },
+    {
+      "type": "application/rendersettings",
+      "content": {
+         "bloom": {
+          "strength": 0.2,
+          "radius": 0.1,
+          "threshold": 0.3
+        }
+      }
+    },
+    {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "start_url": "https://pigloo.github.io/weba-scenes/boat/aurora-sky/index.js"
+    },
+    {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "start_url": "https://pigloo.github.io/weba-scenes/boat/water/index.js"
+    },
+    {
+      "position": [
+        0,
+        0.4,
+        0
+      ],
+      "physics": true,
+      "start_url": "https://pigloo.github.io/weba-scenes/boat/boat.glb",
+      "dynamic": false
+    },
+    {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "start_url": "https://pigloo.github.io/weba-scenes/boat/ribbons/index.js"
+    }
+  ]
+}
