@@ -123,10 +123,12 @@ export default e => {
   })();
   app.add(floor1);
 
+  // remember the physics dimensions are radius not diameter like three.js
+  // also make it nice and thick so people on slow computers dont fall through
   const floorPhysicsId1 = physics.addBoxGeometry(
-    new THREE.Vector3(0, -10, 0),
-    new THREE.Quaternion(),
-    new THREE.Vector3(10, 10, 10),
+    new THREE.Vector3(0, -10, 0), // POSITION
+    new THREE.Quaternion(), // ROTATION
+    new THREE.Vector3(10, 10, 10), // SIZE
     false,
   );
   physicsIds.push(floorPhysicsId1);
@@ -144,10 +146,12 @@ export default e => {
   })();
   app.add(floor2);
 
+  // remember the physics dimensions are radius not diameter like three.js
+  // also make it nice and thick so people on slow computers dont fall through
   const floorPhysicsId2 = physics.addBoxGeometry(
-    new THREE.Vector3(0, -10, -1000),
-    new THREE.Quaternion(),
-    new THREE.Vector3(10, 10, 10),
+    new THREE.Vector3(0, -10, -1000), //POSITION
+    new THREE.Quaternion(), //ROTATION
+    new THREE.Vector3(10, 10, 10), //SIZE
     false,
   );
   physicsIds.push(floorPhysicsId2);
