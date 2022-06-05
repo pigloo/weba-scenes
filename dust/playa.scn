@@ -104,6 +104,14 @@
         0
       ],
       "start_url": "https://pigloo.github.io/weba-scenes/dust/desert/index.js"
+    },
+    {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "start_url": "https://pigloo.github.io/weba-modules/audio/index.js"
     }
   ]
 }
