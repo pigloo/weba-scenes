@@ -52,7 +52,7 @@ export default e => {
     const audioLoader = new THREE.AudioLoader();
     audioLoader.load(`${baseUrl}assets/video.mp4`, buffer => {
       positionalAudio.setBuffer(buffer);
-      positionalAudio.setRefDistance(10); // Distance audio can be heard from
+      positionalAudio.setRefDistance(5); // Distance audio can be heard from
       positionalAudio.loop = true;
 
       positionalAudio.play();

@@ -1,0 +1,65 @@
+{
+  "objects": [
+    {
+      "type": "application/spawnpoint",
+      "content": {
+        "position": [0,3,-3]
+      }
+    },
+    {
+      "type": "application/light",
+      "content": {
+        "lightType": "directional",
+        "args": [[255, 255, 255], 1],
+        "position": [300, 600, -300],
+        "shadow": [50, 2048, 0.5, 1000, -0.0001]
+      }
+    },
+    {
+      "type": "application/light",
+      "content": {
+        "lightType": "ambient",
+        "args": [[255, 255, 255], 1]
+      }
+    },
+    {
+      "type": "application/rendersettings",
+      "content": {
+        "fog": {
+          "fogType": "exp",
+          "args": [[255, 255, 255], 0.005]
+        }
+      }
+    },
+    {
+      "position": [
+        0,
+        0,
+        10
+      ],
+      "physics": false,
+      "start_url": "https://pigloo.github.io/weba-scenes/video/pumpit/index.js",
+      "dynamic": true
+    },
+    {
+      "position": [
+        20,
+        0,
+        5
+      ],
+      "physics": false,
+      "start_url": "https://pigloo.github.io/weba-scenes/video/blueberry/index.js",
+      "dynamic": true
+    },
+    {
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "physics": false,
+      "start_url": "https://pigloo.github.io/weba-scenes/video/white/index.js",
+      "dynamic": true
+    }
+  ]
+}
