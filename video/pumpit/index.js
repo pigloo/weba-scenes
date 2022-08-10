@@ -1,8 +1,7 @@
 import * as THREE from 'three';
-import {PositionalAudioHelper} from 'three/examples/jsm/helpers/PositionalAudioHelper.js';
+//import {PositionalAudioHelper} from 'three/examples/jsm/helpers/PositionalAudioHelper.js';
 
 import metaversefile from 'metaversefile';
-import { MathUtils } from 'three';
 const {useApp, usePhysics, useCleanup, useCamera} = metaversefile;
 
 const baseUrl = import.meta.url.replace(/(\/)[^\/\/]*$/, '$1');
@@ -12,15 +11,26 @@ export default e => {
   const physics = usePhysics();
   const camera = useCamera();
 
-  let playing = false;
-
   let video = null;
   let listener = null;
+  let positionalAudio = null;
 
   const physicsIds = [];
 
-  e.waitUntil((async () => {
-    // MAKE A VIDEO ELEMENT AND ADD TO HTML
+  // something to hold the screen
+  const geometry1 = new THREE.BoxBufferGeometry(20.4, 11.6, 0.1);
+  const material1 = new THREE.MeshStandardMaterial({color: 0x000000});
+  const mesh1 = new THREE.Mesh(geometry1, material1);
+  app.add(mesh1);
+  mesh1.position.y = 11.6 / 2;
+  mesh1.position.z = 0.11;
+
+  // screen holder physics
+  const physicsId1 = physics.addGeometry(mesh1);
+  physicsIds.push(physicsId1);
+
+  ((async () => {
+    // make an html video element and add to document
     video = document.createElement('video');
 
     video.src = `${baseUrl}assets/video.mp4`;
@@ -34,53 +44,54 @@ export default e => {
 
     el.appendChild(video);
 
-    // MAKE A VIDEO TEXTURE AND APPLY TO A PLANE
+    // make a video texture and apply to the plane
     const texture = new THREE.VideoTexture(video);
 
-    const geometry = new THREE.PlaneBufferGeometry(20, 11.2, 1, 1);
-    const material = new THREE.MeshBasicMaterial({color: 0xffffff, map: texture});
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.y = Math.PI;
+    const geometry2 = new THREE.PlaneBufferGeometry(20, 11.2, 1, 1);
+    const material2 = new THREE.MeshBasicMaterial({color: 0xffffff, map: texture});
+    const mesh2 = new THREE.Mesh(geometry2, material2);
+    mesh2.rotation.y = Math.PI;
 
-    app.add(mesh);
-    mesh.position.y = 11.2 / 2 + 0.2;
+    app.add(mesh2);
+    mesh2.position.y = 11.2 / 2 + 0.2;
 
+    const audio = new Promise(resolve => {
     // MAKE SOME POSITIONAL AUDIO THAT ONLY PLAYS WHEN CLOSE TO THE SCREEN
-    listener = new THREE.AudioListener();
-    camera.add(listener);
+      listener = new THREE.AudioListener();
+      camera.add(listener);
 
-    const positionalAudio = new THREE.PositionalAudio(listener);
+      positionalAudio = new THREE.PositionalAudio(listener);
 
-    const audioLoader = new THREE.AudioLoader();
-    audioLoader.load(`${baseUrl}assets/video.mp4`, buffer => {
-      positionalAudio.setBuffer(buffer);
-      positionalAudio.setRefDistance(5); // Distance audio can be heard from
-      positionalAudio.loop = true;
+      const audioLoader = new THREE.AudioLoader();
+      audioLoader.load(`${baseUrl}assets/video.mp4`, buffer => {
+        positionalAudio.setBuffer(buffer);
+        positionalAudio.setRefDistance(5); // Distance audio can be heard from
+        positionalAudio.loop = true;
 
-      // DONT PLAY UNTIL THE PLAYER USES THE MOUSE OTHERWISE BROWSER WILL NOT PLAY AUDIO
-      // MIGHT BE A BETTER WAY TO TRIGGER THIS?
-      const playVideo = () => {
-        positionalAudio.play();
-        video.play();
-        document.removeEventListener('mousemove', playVideo, false);
-      };
-
-      document.addEventListener('mousemove', playVideo, false);
+        resolve();
+      });
+      mesh2.add(positionalAudio);
     });
-    mesh.add(positionalAudio);
+
+    const gesture = new Promise(resolve => {
+      function onGesture() {
+        document.body.removeEventListener('touchend', onGesture);
+        document.body.removeEventListener('mouseup', onGesture);
+        document.body.removeEventListener('keypress', onGesture);
+        resolve();
+      }
+      document.body.addEventListener('touchend', onGesture);
+      document.body.addEventListener('mouseup', onGesture);
+      document.body.addEventListener('keypress', onGesture);
+    });
+
+    // load audio and await use input to play to appease browser audio gods
+    await audio;
+    await gesture;
+
+    positionalAudio.play();
+    video.play();
   })());
-
-  // SOMETHING TO HOLD THE SCREEN
-  const geometry = new THREE.BoxBufferGeometry(20.4, 11.6, 0.1);
-  const material = new THREE.MeshStandardMaterial({color: 0x000000});
-  const mesh = new THREE.Mesh(geometry, material);
-  app.add(mesh);
-  mesh.position.y = 11.6 / 2;
-  mesh.position.z = 0.11;
-
-  // SCREEN PHYSICS
-  const physicsId1 = physics.addGeometry(mesh);
-  physicsIds.push(physicsId1);
 
   useCleanup(() => {
     for (const physicsId of physicsIds) {
