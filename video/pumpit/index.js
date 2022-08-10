@@ -12,6 +12,8 @@ export default e => {
   const physics = usePhysics();
   const camera = useCamera();
 
+  let playing = false;
+
   let video = null;
   let listener = null;
 
@@ -55,8 +57,15 @@ export default e => {
       positionalAudio.setRefDistance(5); // Distance audio can be heard from
       positionalAudio.loop = true;
 
-      positionalAudio.play();
-      video.play();
+      // DONT PLAY UNTIL THE PLAYER USES THE MOUSE OTHERWISE BROWSER WILL NOT PLAY AUDIO
+      // MIGHT BE A BETTER WAY TO TRIGGER THIS?
+      const playVideo = () => {
+        positionalAudio.play();
+        video.play();
+        document.removeEventListener('mousemove', playVideo, false);
+      };
+
+      document.addEventListener('mousemove', playVideo, false);
     });
     mesh.add(positionalAudio);
   })());
