@@ -1,0 +1,5 @@
+{
+  "name": "video screen",
+  "description": "make a cinema or whatever",
+  "start_url": "index.js"
+}
