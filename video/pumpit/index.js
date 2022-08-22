@@ -98,8 +98,20 @@ export default e => {
       physics.removeGeometry(physicsId);
     }
 
-    video.remove();
-    camera.remove(listener);
+    if (video) {
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      video.remove();
+    }
+
+    if (positionalAudio) {
+      positionalAudio.stop();
+    }
+
+    if (listener) {
+      camera.remove(listener);
+    }
   });
 
   return app;
