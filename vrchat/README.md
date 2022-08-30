@@ -1,3 +1,1 @@
-# water
-
-threejs water shader for webaverse
+# VRChat Parody
