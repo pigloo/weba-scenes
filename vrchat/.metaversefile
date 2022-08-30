@@ -1,0 +1,5 @@
+{
+  "name": "VRChat Loading",
+  "description": "VRChat Loading Screen lol",
+  "start_url": "index.js"
+}
