@@ -78,6 +78,10 @@ export default e => {
   const particles = [];
 
   const generateParticles = () => {
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    // Geometry
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     var particleGeometry = new THREE.PlaneBufferGeometry(1, 1, 1, 1);
     var geometry = new THREE.InstancedBufferGeometry();
 
@@ -220,9 +224,12 @@ export default e => {
   const spawn = new Vector3(0, 3, 8);
 
   useFrame(({timeDiff}) => {
+
+    // Rotate Logo
     mesh.rotation.y += timeDiff * 0.001;
     mesh.updateMatrixWorld();
 
+    // Rotate Particles
     for (const p of particles) {
       p.rotation.x += timeDiff * 0.00002;
       p.rotation.y += timeDiff * 0.00002;
@@ -230,12 +237,14 @@ export default e => {
       p.updateMatrixWorld();
     }
 
+    // Get player distance to center
     const player = localPlayer.position;
     const characterController = localPlayer.characterPhysics.characterController;
 
     const dist = player.distanceTo(origin);
     const distFade = 20;
     
+    // Pass player distance to audio and background shader
     if (dist < distFade) {
       sound.setPlaybackRate(1);
       bgMaterial.uniforms.uDist.value = 1;
@@ -246,8 +255,10 @@ export default e => {
       bgMaterial.uniforms.uDist.value = rate;
     }
 
+    // Pass time to background shader for random noise movement
     bgMaterial.uniforms.uTime.value += timeDiff * 0.0001;
 
+    // If the player gets too far from the center move them back THERE IS NO ESCAPE!
     if (dist > 200) {
       physics.setCharacterControllerPosition(characterController, spawn);
 
@@ -263,6 +274,7 @@ export default e => {
     app.updateMatrixWorld();
   });
 
+  // Clean up stuff when chaning scene (probably forgot something here)
   useCleanup(() => {
     for (const physicsId of physicsIds) {
       physics.removeGeometry(physicsId);
@@ -274,6 +286,10 @@ export default e => {
 
   return app;
 };
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Particle Shader
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const particleVert = `
 attribute vec3 translate;
@@ -329,6 +345,10 @@ void main() {
   #include <logdepthbuf_fragment>
 }
 `;
+
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // Background Color Shader
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const bgVert = `
   varying vec2 vUv;
