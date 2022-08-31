@@ -16,7 +16,6 @@ export default e => {
   const localPlayer = useLocalPlayer();
   const camera = useCamera();
 
-  renderer.setClearColor(0x000000, 1);
   const size = new Vector3(1000, 10, 1000);
 
   const listener = new THREE.AudioListener();
@@ -223,6 +222,7 @@ export default e => {
   const origin = new Vector3(0, 0, 0);
   const spawn = new Vector3(0, 3, 8);
 
+  // Things to do on every animation frame
   useFrame(({timeDiff}) => {
 
     // Rotate Logo
@@ -239,8 +239,6 @@ export default e => {
 
     // Get player distance to center
     const player = localPlayer.position;
-    const characterController = localPlayer.characterPhysics.characterController;
-
     const dist = player.distanceTo(origin);
     const distFade = 20;
     
@@ -259,6 +257,8 @@ export default e => {
     bgMaterial.uniforms.uTime.value += timeDiff * 0.0001;
 
     // If the player gets too far from the center move them back THERE IS NO ESCAPE!
+    const characterController = localPlayer.characterPhysics.characterController;
+
     if (dist > 200) {
       physics.setCharacterControllerPosition(characterController, spawn);
 
@@ -274,7 +274,7 @@ export default e => {
     app.updateMatrixWorld();
   });
 
-  // Clean up stuff when chaning scene (probably forgot something here)
+  // Clean up stuff when changing scene (probably forgot something here)
   useCleanup(() => {
     for (const physicsId of physicsIds) {
       physics.removeGeometry(physicsId);
